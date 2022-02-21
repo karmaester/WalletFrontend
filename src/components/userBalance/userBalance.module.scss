@@ -1,0 +1,29 @@
+.container {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    & > * {
+        display: flex;
+        justify-content: center;
+    }
+
+    .balance {
+        margin: auto;
+        margin-bottom: 0.5rem;
+        max-width: 100px;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #fff;
+        background-color: #87d845;
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    .description {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+    }
+}

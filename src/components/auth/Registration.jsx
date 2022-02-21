@@ -1,8 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import {
+  setUser
+} from "../../redux/User/user.actions";
+import { useDispatch } from 'react-redux';
 
 const Registration = (props) => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password_confirmation, setPasswordConfirmation] = useState("");
@@ -12,7 +17,7 @@ const Registration = (props) => {
   const handleSubmit = (event) => {
     axios
       .post(
-        "https://karmaester-wallet-api.herokuapp.com/registrations",
+        "http://localhost:3001/registrations",
         {
           user: {
             email: email,
@@ -28,6 +33,7 @@ const Registration = (props) => {
       )
       .then((response) => {
         if (response.data.status === "created") {
+          dispatch(setUser(response.data));
           props.handelSuccessfulAuth(response.data);
         }
       })
