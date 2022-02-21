@@ -12,8 +12,6 @@ import { getUserState } from "./redux/User/user.selectors";
 
 const App = () => {
   const navigate = useNavigate();
-
-  const [loggedStatus, setLoggedStatus] = useState(false);
   const [user, setUser] = useState(false);
   const [price, setPrice] = useState();
   const [loading, setLoading] = useState(false);
@@ -25,7 +23,6 @@ const App = () => {
   const checkLoginStatus = () => {
     if (window.sessionStorage.getItem("session")) {
       let parsedUser = JSON.parse(window.sessionStorage.getItem("session"));
-      setLoggedStatus(true);
       setUser(parsedUser);
     }
   };
@@ -52,14 +49,7 @@ const App = () => {
     getCurrentPrice();
   }, []);
 
-  const handleLogout = () => {
-    setLoggedStatus(false);
-    setUser(false);
-    window.sessionStorage.removeItem("session");
-  };
-
   const handleLogin = (data) => {
-    setLoggedStatus(true);
     setUser(data);
     window.sessionStorage.setItem("session", JSON.stringify(data));
     navigate('/', { replace: true })
@@ -69,24 +59,18 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Home
         handleLogin={handleLogin}
-        handleLogout={handleLogout}
-        loggedInStatus={loggedStatus}
         price={price}
         loading={loading}
         user={user}
         setUser={setUser}
       />} />
       <Route path="/dashboard" element={<Dashboard
-        handleLogout={handleLogout}
-        loggedInStatus={loggedStatus}
       />} />
       <Route path="/registro" element={<SignUp
         handleLogin={handleLogin}
-        loggedInStatus={loggedStatus}
       />} />
       <Route path="/ingresar" element={<LogIn
         handleLogin={handleLogin}
-        loggedInStatus={loggedStatus}
       />} />
     </Routes>
   );

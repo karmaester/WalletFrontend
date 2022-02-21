@@ -6,7 +6,7 @@ import { getUserState } from "../../redux/User/user.selectors";
 import UserBalance from '../userBalance/UserBalance';
 
 
-const Dashboard = (props) => {
+const Dashboard = () => {
   const user = useSelector(getUserState);
   const [transactions, setTransactions] = useState([]);
   console.log("user: ");
@@ -27,10 +27,8 @@ const Dashboard = (props) => {
         .then((response) => response.json())
         .then((data) => {
           setTransactions(data.transactions);
-          // setLoading(false);
         }).catch((err) => {
           console.log(err);
-          // setLoading(false);
         });
     }
   }
@@ -39,7 +37,7 @@ const Dashboard = (props) => {
 
   return (
     <div>
-      <Header {...props} />
+      <Header />
       <div className={styles.container}>
         <UserBalance />
         {transactions.length > 0 && transactions.map((transaction, index) => {
