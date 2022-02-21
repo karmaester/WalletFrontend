@@ -68,6 +68,8 @@ const TransactionForm = ({ price }) => {
             .then((response) => {
                 if (response.data.status === "created") {
                     console.log("transaction created");
+                    alert("Transaction created");
+                    setAmount(0);
                 }
             })
             .catch((err) => {

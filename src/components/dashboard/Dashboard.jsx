@@ -31,7 +31,7 @@ const Dashboard = () => {
           console.log(err);
         });
     }
-  }
+  };
 
   getTransactions();
 
