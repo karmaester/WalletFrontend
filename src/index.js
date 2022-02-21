@@ -1,21 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// import { Provider } from "react-redux";
-// import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import styles from "./index.scss";
-// import reducers from "./reducers";
-
-// const createStoreWithMiddleware = applyMiddleware()(createStore);
+import store from "./redux/store";
 
 ReactDOM.render(
-  // <Provider store={createStoreWithMiddleware(reducers)}>
-  <BrowserRouter>
-    <div className={styles.app}>
-      <App />
-    </div>
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <div className={styles.app}>
+        <App />
+      </div>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
-  // </Provider>
 );

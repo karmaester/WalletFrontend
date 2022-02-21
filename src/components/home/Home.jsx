@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from '../header/Header'
 import TransactionForm from '../TransactionForm'
 import styles from './home.module.scss'
+import { useDispatch } from 'react-redux';
+import { setPrice } from "../../redux/Price/price.actions";
+import { setUser } from "../../redux/User/user.actions";
 
 const Home = (props) => {
+  const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    if (!props.loading) {
+      dispatch(setPrice(props.price));
+      dispatch(setUser(props.user.user));
+    }
+  }, [props.loading])
+
   return (
     <div>
       <Header {...props} />

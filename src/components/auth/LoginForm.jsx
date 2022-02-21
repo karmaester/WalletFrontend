@@ -1,8 +1,14 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import {
+  setUser
+} from "../../redux/User/user.actions";
+import { useDispatch } from 'react-redux';
 
 const Login = ({ handleSuccessfulAuth }) => {
+  const dispatch = useDispatch();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -25,6 +31,7 @@ const Login = ({ handleSuccessfulAuth }) => {
         if (response.data.logged_in) {
           console.log("stop loading");
           handleSuccessfulAuth(response.data);
+          dispatch(setUser(response.data));
         }
       })
       .catch((err) => {

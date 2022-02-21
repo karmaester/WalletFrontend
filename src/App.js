@@ -7,6 +7,8 @@ import Dashboard from "./components/dashboard/Dashboard";
 import Home from "./components/home/Home";
 import SignUp from "./components/register/Register";
 import LogIn from "./components/login/Login";
+import { useSelector } from 'react-redux';
+import { getUserState } from "./redux/User/user.selectors";
 
 const App = () => {
   const navigate = useNavigate();
@@ -15,6 +17,7 @@ const App = () => {
   const [user, setUser] = useState(false);
   const [price, setPrice] = useState();
   const [loading, setLoading] = useState(false);
+  const globalUser = useSelector(getUserState);
 
   const checkLoginStatus = () => {
     if (window.sessionStorage.getItem("session")) {
@@ -33,7 +36,6 @@ const App = () => {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setPrice(data.bpi.USD.rate);
         setLoading(false);
       }).catch((err) => {

@@ -4,7 +4,6 @@ import axios from "axios";
 
 const TransactionForm = (props) => {
     const [amount, setAmount] = useState(0);
-    console.log(props.user.user.id.toString());
     const handleSubmit = (event) => {
         axios
             .post(
