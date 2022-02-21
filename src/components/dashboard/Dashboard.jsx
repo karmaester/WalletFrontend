@@ -13,7 +13,7 @@ const Dashboard = (props) => {
 
   const getTransactions = () => {
     if (user) {
-      fetch("http://localhost:3001/transactions",
+      fetch("https://karmaester-wallet-api.herokuapp.com/transactions",
         {
           transaction: {
             user_id: user.user.id.toString(),

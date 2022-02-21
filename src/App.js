@@ -29,7 +29,7 @@ const App = () => {
 
   const getCurrentPrice = () => {
     setLoading(true);
-    fetch("http://localhost:3001/current_price",
+    fetch("https://karmaester-wallet-api.herokuapp.com/current_price",
       {
         credentials: 'include'
       }
