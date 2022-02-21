@@ -11,7 +11,7 @@ const Login = ({ handleSuccessfulAuth }) => {
     console.log("loading");
     axios
       .post(
-        "https://karmaester-wallet-api.herokuapp.com/sessions",
+        "http://localhost:3001/sessions",
         {
           user: {
             email: email,
