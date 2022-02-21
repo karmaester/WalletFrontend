@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import Header from '../header/Header'
-import TransactionForm from '../TransactionForm'
+import TransactionForm from '../transactionForm/TransactionForm'
 import UserBalance from '../userBalance/UserBalance'
 import styles from './home.module.scss'
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,7 +29,7 @@ const Home = (props) => {
         {user.user && (
           <div className={styles.container}>
             <UserBalance />
-            <TransactionForm {...props} />
+            <TransactionForm price={props.price} />
           </div>
         )}
       </div>

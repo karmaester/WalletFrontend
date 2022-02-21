@@ -7,18 +7,15 @@ import Dashboard from "./components/dashboard/Dashboard";
 import Home from "./components/home/Home";
 import SignUp from "./components/register/Register";
 import LogIn from "./components/login/Login";
-import { useSelector } from 'react-redux';
-import { getUserState } from "./redux/User/user.selectors";
+// import { useSelector } from 'react-redux';
+// import { getUserState } from "./redux/User/user.selectors";
 
 const App = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(false);
   const [price, setPrice] = useState();
   const [loading, setLoading] = useState(false);
-  const globalUser = useSelector(getUserState);
-
-  console.log("globalUser: ");
-  console.log(globalUser);
+  // const globalUser = useSelector(getUserState);
 
   const checkLoginStatus = () => {
     if (window.sessionStorage.getItem("session")) {

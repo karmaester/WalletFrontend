@@ -1,4 +1,4 @@
-import { SET_USER } from './user.types';
+import { SET_USER, SET_USER_BITCOIN_BALANCE } from './user.types';
 
 
 const INITIAL_STATE = {
@@ -13,17 +13,17 @@ const reducer = (state = INITIAL_STATE, action) => {
     switch (type) {
 
         case SET_USER:
-
             return {
-
                 ...state, user: payload,
+            };
 
+        case SET_USER_BITCOIN_BALANCE:
+            return {
+                ...state, user: { ...state.user, bitcoinBalance: payload },
             };
 
         default: return state;
-
     }
-
 };
 
 export default reducer;
