@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../header/Header'
 import styles from './dashboard.module.scss'
 import { useSelector } from 'react-redux';
@@ -12,14 +12,14 @@ const Dashboard = () => {
   console.log("user: ");
   console.log(user.user.id);
 
+
+  useEffect(() => {
+    getTransactions();
+  }, []);
+
   const getTransactions = () => {
     if (user) {
-      fetch("http://localhost:3001/transactions",
-        {
-          transaction: {
-            user_id: user.user.id.toString(),
-          }
-        },
+      fetch(`http://localhost:3001/users/${user.user.id}/transactions`,
         {
           credentials: 'include'
         }
@@ -27,13 +27,12 @@ const Dashboard = () => {
         .then((response) => response.json())
         .then((data) => {
           setTransactions(data.transactions);
+          console.log("exito")
         }).catch((err) => {
           console.log(err);
         });
     }
   };
-
-  getTransactions();
 
   return (
     <div>
