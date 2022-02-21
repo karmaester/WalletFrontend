@@ -28,7 +28,7 @@ const App = () => {
     setLoading(true);
     fetch("http://localhost:3001/current_price",
       {
-        withCredentials: true,
+        credentials: 'include'
       }
     )
       .then((response) => response.json())
