@@ -3,10 +3,10 @@ import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-import Dashboard from "./components/Dashboard";
-import Home from "./components/Home";
-import SignUp from "./components/Register";
-import LogIn from "./components/Login";
+import Dashboard from "./components/dashboard/Dashboard";
+import Home from "./components/home/Home";
+import SignUp from "./components/register/Register";
+import LogIn from "./components/login/Login";
 
 const App = () => {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ const App = () => {
 
   const getCurrentPrice = () => {
     setLoading(true);
-    fetch("https://karmaester-wallet-api.herokuapp.com/current_price",
+    fetch("http://localhost:3001/current_price",
       {
         credentials: 'include'
       }

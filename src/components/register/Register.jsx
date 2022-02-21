@@ -1,14 +1,15 @@
 import React from 'react';
-import Registration from "./auth/Registration";
-import Header from "./Header";
+import Registration from "../auth/Registration";
+import Header from "../header/Header";
+import styles from "./register.module.scss";
+
 
 const SignUp = ({ handleLogin }) => {
 
   return (
     <div>
       <Header />
-      <h3>Register</h3>
-      <div className="">
+      <div className={styles.container}>
         <Registration handelSuccessfulAuth={handleLogin} />
       </div>
     </div>

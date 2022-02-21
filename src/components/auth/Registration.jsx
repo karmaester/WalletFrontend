@@ -12,7 +12,7 @@ const Registration = (props) => {
   const handleSubmit = (event) => {
     axios
       .post(
-        "https://karmaester-wallet-api.herokuapp.com/registrations",
+        "http://localhost:3001/registrations",
         {
           user: {
             email: email,
@@ -38,7 +38,7 @@ const Registration = (props) => {
   };
 
   return (
-    <div className="">
+    <>
       <h3>Por favor ingrese sus datos y oprima el boton "Registrarme".</h3>
       <form className="">
         <input
@@ -95,7 +95,7 @@ const Registration = (props) => {
           Registrarme
         </button>
       </form>
-    </div>
+    </>
   );
 };
 

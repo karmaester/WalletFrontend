@@ -5,13 +5,12 @@ import axios from "axios";
 const Login = ({ handleSuccessfulAuth }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [loginErrors, setloginErrors] = useState("");
 
   const handleSubmit = (event) => {
     console.log("loading");
     axios
       .post(
-        "https://karmaester-wallet-api.herokuapp.com/sessions",
+        "http://localhost:3001/sessions",
         {
           user: {
             email: email,
@@ -36,7 +35,7 @@ const Login = ({ handleSuccessfulAuth }) => {
   };
 
   return (
-    <div className="">
+    <>
       <h3>Por favor ingrese email y contraseña.</h3>
       <form className="" onSubmit={handleSubmit}>
         <input
@@ -63,7 +62,7 @@ const Login = ({ handleSuccessfulAuth }) => {
           Ingresar
         </button>
       </form>
-    </div>
+    </>
   );
 };
 

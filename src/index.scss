@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+form {
+  margin: auto;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+
+  button {
+      color: white;
+      border-radius: 50px;
+      border: none;
+      background-color: rgb(23, 83, 250);
+      &:hover {
+          background-color: rgb(110, 149, 255);
+      }
+  }
+}

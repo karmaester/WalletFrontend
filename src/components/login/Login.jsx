@@ -1,17 +1,17 @@
 import React from 'react';
-import Login from "./auth/LoginForm";
-import Header from "./Header";
+import Login from "../auth/LoginForm";
+import Header from "../header/Header";
+import styles from "./login.module.scss";
 
 const LogIn = ({ handleLogin }) => {
 
   return (
-    <div className="">
+    <>
       <Header />
-      <h3>Login</h3>
-      <div className="">
+      <div className={styles.container}>
         <Login handleSuccessfulAuth={handleLogin} />
       </div>
-    </div>
+    </>
   );
 };
 
