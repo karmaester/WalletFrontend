@@ -8,7 +8,7 @@ const TransactionForm = (props) => {
     const handleSubmit = (event) => {
         axios
             .post(
-                "http://localhost:3001/transactions",
+                "https://karmaester-wallet-api.herokuapp.com/transactions",
                 {
                     transaction: {
                         user_id: props.user.user.id.toString(),

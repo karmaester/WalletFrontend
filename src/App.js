@@ -26,11 +26,9 @@ const App = () => {
 
   const getCurrentPrice = () => {
     setLoading(true);
-    fetch("http://localhost:3001/current_price",
+    fetch("https://karmaester-wallet-api.herokuapp.com/current_price",
       {
-        mode: 'cors', // no-cors, *cors, same-origin
-        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'same-origin',
+        credentials: 'include'
       }
     )
       .then((response) => response.json())
