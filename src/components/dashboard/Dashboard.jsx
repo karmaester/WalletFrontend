@@ -3,6 +3,7 @@ import Header from '../header/Header'
 import styles from './dashboard.module.scss'
 import { useSelector } from 'react-redux';
 import { getUserState } from "../../redux/User/user.selectors";
+import UserBalance from '../userBalance/UserBalance';
 
 
 const Dashboard = (props) => {
@@ -40,10 +41,7 @@ const Dashboard = (props) => {
     <div>
       <Header {...props} />
       <div className={styles.container}>
-        <div>Tu saldo en dólares</div>
-        <div>{user.user.dollar_balance.toString()}</div>
-        <div>Tu saldo en BTC</div>
-        <div>{user.user.bitcoin_balance.toString()}</div>
+        <UserBalance />
         {transactions.length > 0 && transactions.map((transaction, index) => {
           return (
             <div key={index}>

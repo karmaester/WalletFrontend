@@ -1,16 +1,19 @@
 import React from 'react'
 import styles from './userBalance.module.scss'
+import { useSelector } from 'react-redux';
+import { getUserState } from "../../redux/User/user.selectors";
 
-const UserBalance = ({ user }) => {
-    // console.log("user: ", user);
+const UserBalance = () => {
+    const globalUser = useSelector(getUserState);
+
     return (
         <div className={styles.container}>
-            {user.user !== undefined ? (
+            {globalUser.user !== undefined ? (
                 <>
                     <div className={styles.description}>Tu saldo en dólares</div>
-                    <div className={styles.balance}>{user.user.dollar_balance.toString()}</div>
+                    <div className={styles.balance}>{globalUser.user.dollar_balance.toString()}</div>
                     <div className={styles.description}>Tu saldo en BTC</div>
-                    <div className={styles.balance}>{user.user.bitcoin_balance.toString()}</div>
+                    <div className={styles.balance}>{globalUser.user.bitcoin_balance.toString()}</div>
                 </>
             ) : (
                 <div>Loading...</div>

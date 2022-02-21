@@ -33,7 +33,7 @@ const Registration = (props) => {
       )
       .then((response) => {
         if (response.data.status === "created") {
-          dispatch(setUser(response.data));
+          dispatch(setUser(response.data.user));
           props.handelSuccessfulAuth(response.data);
         }
       })

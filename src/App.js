@@ -19,6 +19,9 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const globalUser = useSelector(getUserState);
 
+  console.log("globalUser: ");
+  console.log(globalUser);
+
   const checkLoginStatus = () => {
     if (window.sessionStorage.getItem("session")) {
       let parsedUser = JSON.parse(window.sessionStorage.getItem("session"));

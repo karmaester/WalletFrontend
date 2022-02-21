@@ -5,19 +5,13 @@ import UserBalance from '../userBalance/UserBalance'
 import styles from './home.module.scss'
 import { useDispatch } from 'react-redux';
 import { setPrice } from "../../redux/Price/price.actions";
-import { setUser } from "../../redux/User/user.actions";
-import { useSelector } from 'react-redux';
-import { getUserState } from "../../redux/User/user.selectors";
 
 const Home = (props) => {
   const dispatch = useDispatch();
-  const globalUser = useSelector(getUserState);
-  console.log("user in home:", props.user.user);
 
   useEffect(() => {
     if (!props.loading) {
       dispatch(setPrice(props.price));
-      dispatch(setUser(props.user.user));
     }
   }, []);
 
@@ -32,7 +26,7 @@ const Home = (props) => {
         {props.loading ? <div className={styles.price}>Just a sec...</div> : <div className={styles.price}>{props.price}</div>}
         {props.user && (
           <div className={styles.container}>
-            <UserBalance user={props.user} />
+            <UserBalance />
             <TransactionForm {...props} />
           </div>
         )}

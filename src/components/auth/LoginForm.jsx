@@ -29,7 +29,7 @@ const Login = ({ handleSuccessfulAuth }) => {
       )
       .then((response) => {
         if (response.data.logged_in) {
-          dispatch(setUser(response.data));
+          dispatch(setUser(response.data.user));
           handleSuccessfulAuth(response.data);
         }
       })

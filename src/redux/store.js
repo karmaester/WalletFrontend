@@ -1,41 +1,21 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import storage from 'redux-persist/lib/storage';
+import reducers from './reducers';
 import {
     persistReducer,
-    FLUSH,
-    REHYDRATE,
-    PAUSE,
-    PERSIST,
-    PURGE,
-    REGISTER,
+    persistStore
 } from 'redux-persist';
-import { combineReducers } from 'redux';
-import userReducer from './User/user.reducer';
-import priceReducer from './Price/price.reducer';
 
 const persistConfig = {
     key: 'user',
     storage,
 };
 
-const reducers = combineReducers({
-    user: userReducer,
-    price: priceReducer,
-});
-
-const store = createStore(reducers);
-
 const persistedReducer = persistReducer(persistConfig, reducers);
 
-export const configureStore = ({
-    reducer: persistedReducer,
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware({
-            serializableCheck: {
-                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-            },
-        }),
-});
+const store = createStore(persistedReducer, applyMiddleware());
 
+const Persistor = persistStore(store);
 
+export { Persistor };
 export default store;
