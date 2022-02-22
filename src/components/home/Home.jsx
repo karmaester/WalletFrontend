@@ -16,7 +16,7 @@ const Home = (props) => {
 
   const getUpdatedUser = () => {
     if (user) {
-      fetch(`http://localhost:3001/users/${user.user.id}`,
+      fetch(`https://karmaester-wallet-api.herokuapp.com/users/${user.user.id}`,
         {
           credentials: 'include'
         }

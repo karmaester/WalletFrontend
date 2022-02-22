@@ -4,7 +4,7 @@ import styles from './dashboard.module.scss'
 import { useSelector } from 'react-redux';
 import { getUserState } from "../../redux/User/user.selectors";
 import UserBalance from '../userBalance/UserBalance';
-
+import { formatDollar, formatBitcoin } from '../../utils/format';
 
 const Dashboard = () => {
   const user = useSelector(getUserState);
@@ -16,7 +16,7 @@ const Dashboard = () => {
 
   const getTransactions = () => {
     if (user) {
-      fetch(`http://localhost:3001/users/${user.user.id}/transactions`,
+      fetch(`https://karmaester-wallet-api.herokuapp.com/users/${user.user.id}/transactions`,
         {
           credentials: 'include'
         }
@@ -37,12 +37,20 @@ const Dashboard = () => {
         <UserBalance />
         {transactions.length > 0 && transactions.map((transaction, index) => {
           return (
-            <div key={index}>
+            <div className={styles.card} key={index}>
               <div>Compraste:</div>
               <div>{transaction.to_currency}</div>
-              <div>{transaction.receiving_amount}</div>
+              <div>{transaction.to_currency == 'Dollar' ?
+                formatDollar(transaction.receiving_amount) :
+                formatBitcoin(transaction.receiving_amount)
+              }
+              </div>
               <div>Costo de operación:</div>
-              <div>{transaction.sending_amount}</div>
+              <div>{transaction.to_currency == 'Bitcoin' ?
+                formatDollar(transaction.sending_amount) :
+                formatBitcoin(transaction.sending_amount)
+              }
+              </div>
             </div>
           )
         })}

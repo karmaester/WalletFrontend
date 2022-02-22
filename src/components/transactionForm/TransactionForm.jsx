@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from "axios";
 import { useSelector } from 'react-redux';
 import { getUserState } from "../../redux/User/user.selectors";
+import styles from './transactionForm.module.scss';
 
 const TransactionForm = ({ price, reloadUser }) => {
     const user = useSelector(getUserState);
@@ -50,7 +51,7 @@ const TransactionForm = ({ price, reloadUser }) => {
         }
         axios
             .post(
-                "http://localhost:3001/transactions",
+                "https://karmaester-wallet-api.herokuapp.com/transactions",
                 {
                     transaction: {
                         user_id: user.user.id.toString(),
@@ -74,12 +75,13 @@ const TransactionForm = ({ price, reloadUser }) => {
 
     return (
         <div>
-            <form className="">
+            <form className={styles.container}>
                 <label for="currency">Moneda a comprar</label>
                 <select name="currency" id="currency" onChange={(e) => setToCurrency(e.target.value)}>
                     <option value="Bitcoin">BTC</option>
                     <option value="Dollar">USD</option>
                 </select>
+                <label for="amount">Monto</label>
                 <input
                     label="Comprar"
                     name="amount"
