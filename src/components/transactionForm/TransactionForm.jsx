@@ -4,6 +4,8 @@ import axios from "axios";
 import { useSelector } from 'react-redux';
 import { getUserState } from "../../redux/User/user.selectors";
 import styles from './transactionForm.module.scss';
+import { formatDollar, formatBitcoin } from '../../utils/format';
+
 
 const TransactionForm = ({ price, reloadUser }) => {
     const user = useSelector(getUserState);
@@ -95,6 +97,12 @@ const TransactionForm = ({ price, reloadUser }) => {
                 <button onClick={handleSubmit}>
                     Comprar
                 </button>
+                {transactionsPrice > 0 &&
+                    <>
+                        <div>Costo de operación:</div>
+                        <div>{toCurrency == 'Bitcoin' ? formatDollar(transactionsPrice) : formatBitcoin(transactionsPrice)}</div>
+                    </>
+                }
             </form>
         </div>
     )
