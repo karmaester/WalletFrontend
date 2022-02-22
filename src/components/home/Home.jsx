@@ -6,10 +6,34 @@ import styles from './home.module.scss'
 import { useDispatch, useSelector } from 'react-redux';
 import { setPrice } from "../../redux/Price/price.actions";
 import { getUserState } from "../../redux/User/user.selectors";
+import {
+  setUser
+} from "../../redux/User/user.actions";
 
 const Home = (props) => {
   const user = useSelector(getUserState);
   const dispatch = useDispatch();
+
+  const getUpdatedUser = () => {
+    if (user) {
+      fetch(`http://localhost:3001/users/${user.user.id}`,
+        {
+          credentials: 'include'
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          dispatch(setUser(data.user));
+          console.log("User updated: ", data.user);
+        }).catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
+  const reloadUser = () => {
+    getUpdatedUser();
+  };
 
   useEffect(() => {
     if (!props.loading) {
@@ -29,7 +53,7 @@ const Home = (props) => {
         {user.user && (
           <div className={styles.container}>
             <UserBalance />
-            <TransactionForm price={props.price} />
+            <TransactionForm price={props.price} reloadUser={reloadUser} />
           </div>
         )}
       </div>

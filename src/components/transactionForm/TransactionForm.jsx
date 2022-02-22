@@ -4,7 +4,7 @@ import axios from "axios";
 import { useSelector } from 'react-redux';
 import { getUserState } from "../../redux/User/user.selectors";
 
-const TransactionForm = ({ price }) => {
+const TransactionForm = ({ price, reloadUser }) => {
     const user = useSelector(getUserState);
     const [toCurrency, setToCurrency] = useState("Bitcoin");
     const [amount, setAmount] = useState(0);
@@ -18,10 +18,8 @@ const TransactionForm = ({ price }) => {
 
     const calculateTransactionPrice = (toCurrency, amount, numberedPrice) => {
         if (toCurrency === "Bitcoin") {
-            console.log("calculateTransactionPrice: " + amount * numberedPrice);
             setTransactionsPrice(amount * numberedPrice);
         } else {
-            console.log("calculateTransactionPrice: " + amount / numberedPrice);
             setTransactionsPrice(amount / numberedPrice);
         }
     };
@@ -31,9 +29,6 @@ const TransactionForm = ({ price }) => {
             "Bitcoin": "dollar_balance",
             "Dollar": "bitcoin_balance",
         }
-        console.log("User balance for transaction is: ")
-        console.log(parseFloat(user.user[mapper[toCurrency]]));
-        console.log("Price for transaction is: ", transactionsPrice);
         user.user[mapper[toCurrency]] >= transactionsPrice ? setError(false) : setError(true);
     };
 
@@ -59,17 +54,17 @@ const TransactionForm = ({ price }) => {
                 {
                     transaction: {
                         user_id: user.user.id.toString(),
-                        to_currency: "Dollar",
-                        sending_amount: 0.001,
-                        receiving_amount: 10
+                        to_currency: toCurrency,
+                        sending_amount: transactionsPrice,
+                        receiving_amount: amount
                     },
                 }
             )
             .then((response) => {
                 if (response.data.status === "created") {
-                    console.log("transaction created");
                     alert("Transaction created");
                     setAmount(0);
+                    reloadUser();
                 }
             })
             .catch((err) => {

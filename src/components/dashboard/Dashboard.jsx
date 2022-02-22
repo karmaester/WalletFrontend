@@ -9,9 +9,6 @@ import UserBalance from '../userBalance/UserBalance';
 const Dashboard = () => {
   const user = useSelector(getUserState);
   const [transactions, setTransactions] = useState([]);
-  console.log("user: ");
-  console.log(user.user.id);
-
 
   useEffect(() => {
     getTransactions();
@@ -27,7 +24,6 @@ const Dashboard = () => {
         .then((response) => response.json())
         .then((data) => {
           setTransactions(data.transactions);
-          console.log("exito")
         }).catch((err) => {
           console.log(err);
         });
@@ -42,10 +38,11 @@ const Dashboard = () => {
         {transactions.length > 0 && transactions.map((transaction, index) => {
           return (
             <div key={index}>
-              <div>{transaction.from_currency}</div>
-              <div>{transaction.sending_amount}</div>
+              <div>Compraste:</div>
               <div>{transaction.to_currency}</div>
               <div>{transaction.receiving_amount}</div>
+              <div>Costo de operación:</div>
+              <div>{transaction.sending_amount}</div>
             </div>
           )
         })}
