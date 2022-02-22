@@ -1,0 +1,17 @@
+.container {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    & > * {
+        display: flex;
+        justify-content: center;
+    }
+
+    select, input {
+        font-size: 1rem;
+        margin: 0.5rem 0;
+        border-radius: 1rem;
+    }
+}
