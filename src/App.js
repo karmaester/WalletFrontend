@@ -7,26 +7,31 @@ import Dashboard from "./components/dashboard/Dashboard";
 import Home from "./components/home/Home";
 import SignUp from "./components/register/Register";
 import LogIn from "./components/login/Login";
-// import { useSelector } from 'react-redux';
-// import { getUserState } from "./redux/User/user.selectors";
+import { useSelector } from 'react-redux';
+import { getUserState } from "./redux/User/user.selectors";
 
 const App = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(false);
   const [price, setPrice] = useState();
   const [loading, setLoading] = useState(false);
-  // const globalUser = useSelector(getUserState);
+  const globalUser = useSelector(getUserState);
 
   const checkLoginStatus = () => {
+
     if (window.sessionStorage.getItem("session")) {
       let parsedUser = JSON.parse(window.sessionStorage.getItem("session"));
       setUser(parsedUser);
+    } else if (globalUser) {
+      setUser(globalUser);
+    } else {
+      setUser(false);
     }
   };
 
   const getCurrentPrice = () => {
     setLoading(true);
-    fetch("https://karmaester-wallet-api.herokuapp.com/current_price",
+    fetch("http://127.0.0.1:3001/current_price",
       {
         credentials: 'include'
       }

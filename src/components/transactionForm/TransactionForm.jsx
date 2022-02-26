@@ -53,7 +53,7 @@ const TransactionForm = ({ price, reloadUser }) => {
         }
         axios
             .post(
-                "https://karmaester-wallet-api.herokuapp.com/transactions",
+                "http://127.0.0.1:3001/transactions",
                 {
                     transaction: {
                         user_id: user.user.id.toString(),
