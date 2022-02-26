@@ -17,7 +17,7 @@ const Registration = (props) => {
   const handleSubmit = (event) => {
     axios
       .post(
-        "http://127.0.0.1:3001/registrations",
+        "https://karmaester-wallet-api.herokuapp.com/registrations",
         {
           user: {
             email: email,

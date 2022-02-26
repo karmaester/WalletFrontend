@@ -16,7 +16,7 @@ const Dashboard = () => {
 
   const getTransactions = () => {
     if (user) {
-      fetch(`http://127.0.0.1:3001/users/${user.user.id}/transactions`,
+      fetch(`https://karmaester-wallet-api.herokuapp.com/users/${user.user.id}/transactions`,
         {
           credentials: 'include'
         }
