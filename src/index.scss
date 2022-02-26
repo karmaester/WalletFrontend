@@ -3,6 +3,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+  background-color: rgb(252, 251, 247);
 }
 
 form {
@@ -15,6 +16,8 @@ form {
       color: white;
       border-radius: 50px;
       border: none;
+      padding: 8px;
+      font-size: 1rem;
       background-color: rgb(23, 83, 250);
       &:hover {
           background-color: rgb(110, 149, 255);
