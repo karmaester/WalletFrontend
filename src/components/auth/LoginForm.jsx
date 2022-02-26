@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import {
@@ -6,11 +6,14 @@ import {
 } from "../../redux/User/user.actions";
 import { useDispatch } from 'react-redux';
 
+import styles from './login.module.scss';
+
 const Login = ({ handleSuccessfulAuth }) => {
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
 
   const handleSubmit = (event) => {
     console.log("loading");
@@ -32,9 +35,14 @@ const Login = ({ handleSuccessfulAuth }) => {
           dispatch(setUser(response.data.user));
           handleSuccessfulAuth(response.data);
         }
+        else if (response.data.status === 401) {
+          setError(true);
+          setTimeout(() => {
+            setError(false);
+          }, 3000);
+        };
       })
       .catch((err) => {
-        console.log("stop loading - error");
         console.log("login error", err);
       });
     event.preventDefault();
@@ -68,6 +76,7 @@ const Login = ({ handleSuccessfulAuth }) => {
           Ingresar
         </button>
       </form>
+      {error && <p className={styles.error}>Usuario o contraseña incorrectos</p>}
     </>
   );
 };
