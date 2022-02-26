@@ -22,7 +22,8 @@ const App = () => {
     if (window.sessionStorage.getItem("session")) {
       let parsedUser = JSON.parse(window.sessionStorage.getItem("session"));
       setUser(parsedUser);
-    } else if (globalUser) {
+    } else if (globalUser !== false) {
+      window.sessionStorage.setItem("session", JSON.stringify(globalUser));
       setUser(globalUser);
     } else {
       setUser(false);

@@ -7,26 +7,17 @@ import { useDispatch } from 'react-redux';
 
 import { Link } from "react-router-dom";
 import styles from './header.module.scss';
+import { useSelector } from 'react-redux';
+import { getUserState } from "../../redux/User/user.selectors";
 
 
 const Header = () => {
+    const user = useSelector(getUserState);
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
-    const [loggedStatus, setLoggedStatus] = useState(false);
-
-    const checkLoginStatus = () => {
-        if (window.sessionStorage.getItem("session")) {
-            setLoggedStatus(true);
-        }
-    };
-
-    useEffect(() => {
-        checkLoginStatus();
-    }, []);
 
     const handleLogout = () => {
-        setLoggedStatus(false);
         dispatch(setUser(false));
         window.sessionStorage.removeItem("session");
         navigate('/', { replace: true })
@@ -38,7 +29,7 @@ const Header = () => {
             <Link to="/">
                 <div className={styles.icon}>WALLET APP</div>
             </Link>
-            {loggedStatus ?
+            {user.user ?
                 <div className={styles.options}>
                     <nav>
                         <Link to="/dashboard">Ver mis transacciones</Link>
